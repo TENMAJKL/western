@@ -9,15 +9,15 @@ let players = {};
 
 io.on("connection", function(socket)
 {
-    var id = Math.random().toString(16).substr(2, 64);
+    let id = Math.random().toString(16).substr(2, 64);
     socket.send(JSON.stringify({type: "id", id: id}))
 
-    players[id] = {socket: socket, name: "bohdan"};
-    console.log(`User ${id} connected lol`)
+    players[id] = {socket: socket, name: "bohdan"}; // WIP: name
+    console.log(`User ${id} connected`)
     var player
     for (player_id in players)
     {
-        player = JSON.stringify({type: "new_player", name: players[player_ud]["name"], id: player_id}) 
+        player = JSON.stringify({type: "new_player", name: players[player_id]["name"], id: player_id}) 
         socket.send()
         if (player_id == id)
             continue
