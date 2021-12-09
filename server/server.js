@@ -14,15 +14,14 @@ io.on("connection", function(socket)
 
     players[id] = {socket: socket, name: "bohdan"};
     console.log(`User ${id} connected lol`)
-    for (player in players)
+    var player
+    for (player_id in players)
     {
-        if (player == id)
-        {
-
+        player = JSON.stringify({type: "new_player", name: players[player_ud]["name"], id: player_id}) 
+        socket.send()
+        if (player_id == id)
             continue
-        }
-        players[player]["socket"].send(JSON.stringify({type: "new_player", name: players[player]["name"], id: player}))
-        
+        players[player_id]["socket"].send(player)        
     }
 
     socket.on("message", function(data)
